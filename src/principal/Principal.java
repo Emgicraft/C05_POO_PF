@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import modelo.SQLDB;
 import vista.FrmLogin;
 import vista.FrmPrincipal;
+import vista.FrmProducto;
 
 /**
  *
@@ -26,16 +27,22 @@ public class Principal {
         }
         
         // ***** FORMULARIOS *****
-        // Instanciar el Formulario
-        FrmLogin venLogin = new FrmLogin();
+        // Instanciar
+        //FrmLogin venLogin = new FrmLogin();
         
-        // Mostrar el Formulario
-        venLogin.setVisible(true);
+        // Mostrar
+        //venLogin.setVisible(true);
         
-        // Instanciar el Formulario
+        // Instanciar
         FrmPrincipal venMain = new FrmPrincipal();
         
-        // Mostrar el Formulario
-        venMain.setVisible(true);
+        // Mostrar
+        venMain.setVisible(false);
+        
+        // Instanciar
+        FrmProducto venProd = new FrmProducto();
+        
+        // Mostrar
+        venProd.setVisible(true);
     }
 }

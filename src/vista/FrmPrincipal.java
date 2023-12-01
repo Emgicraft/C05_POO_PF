@@ -36,9 +36,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         etiUsuarios = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Menú Principal");
+        setTitle("Pantalla Principal");
         setName("frmMenuPrincipal"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(800, 540));
 
         panFondo.setBackground(new java.awt.Color(0, 204, 204));
 
