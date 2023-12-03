@@ -1,14 +1,19 @@
 package vista;
 
+import controlador.Navegador;
+
 /**
  *
  * @author Magh
  */
 public class FrmProducto extends javax.swing.JFrame {
+    private Navegador nav;
+    
     /**
-     * Crea nuevo formulario FrmProducto
+     * Crea nuevo formulario FrmProducto.
      */
-    public FrmProducto() {
+    public FrmProducto(Navegador nav) {
+        this.nav = nav;
         initComponents();
     }
 
@@ -44,9 +49,31 @@ public class FrmProducto extends javax.swing.JFrame {
         btnAdmBuscar = new javax.swing.JButton();
         tglbtnAdmEditar = new javax.swing.JToggleButton();
         btnAdmGuardar = new javax.swing.JButton();
+        etiAdmDescontinuado = new javax.swing.JLabel();
+        chkAdmDescontinuado = new javax.swing.JCheckBox();
         panelComprar = new javax.swing.JPanel();
+        scrollPaneComprar = new javax.swing.JScrollPane();
+        tablaComprarProducto = new javax.swing.JTable();
+        modeloTablaComprarProducto = new javax.swing.table.DefaultTableModel(); // TableModel
+        etiComprarCategoria = new javax.swing.JLabel();
+        etiComprarTipo = new javax.swing.JLabel();
+        cmbComprarCategoria = new javax.swing.JComboBox<>();
+        cmbComprarTipo = new javax.swing.JComboBox<>();
+        btnComprarCategoriaCrear = new javax.swing.JButton();
+        etiComprarProveedor = new javax.swing.JLabel();
+        btnComprarTipoCrear = new javax.swing.JButton();
+        btnComprarAniadir = new javax.swing.JButton();
+        etiListaDeCompras = new javax.swing.JLabel();
+        etiComprarDescripcion = new javax.swing.JLabel();
+        scrollPaneComprarDescripcion = new javax.swing.JScrollPane();
+        txtaDescripcion = new javax.swing.JTextArea();
+        etiComprarCaracteristicas = new javax.swing.JLabel();
+        scrollPaneComprarCaracteristicas = new javax.swing.JScrollPane();
+        txtaComprarCaracteristicas = new javax.swing.JTextArea();
+        btnComprarQuitar = new javax.swing.JButton();
+        cmbComprarProveedor = new javax.swing.JComboBox<>();
+        btnComprarProveedorRegistrar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Administrar Productos");
         setMinimumSize(new java.awt.Dimension(1000, 720));
         setName("frmProducto"); // NOI18N
@@ -58,7 +85,7 @@ public class FrmProducto extends javax.swing.JFrame {
         panelAdministrar.setPreferredSize(new java.awt.Dimension(1000, 680));
 
         scrollPaneAdm.setMinimumSize(new java.awt.Dimension(100, 100));
-        scrollPaneAdm.setPreferredSize(new java.awt.Dimension(800, 370));
+        scrollPaneAdm.setPreferredSize(new java.awt.Dimension(800, 340));
 
         modeloTablaAdmProducto.setColumnIdentifiers(new String[] {
             // Jalar de la BD todas las cabeceras de la tabla Producto
@@ -195,6 +222,17 @@ public class FrmProducto extends javax.swing.JFrame {
             }
         });
 
+        etiAdmDescontinuado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        etiAdmDescontinuado.setText("Descontinuado:");
+        etiAdmDescontinuado.setPreferredSize(new java.awt.Dimension(52, 30));
+
+        chkAdmDescontinuado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        chkAdmDescontinuado.setText("Si");
+        chkAdmDescontinuado.setToolTipText("Si se selecciona, se mostrarán aquellos productos que son descontinuados.");
+        chkAdmDescontinuado.setMaximumSize(new java.awt.Dimension(35, 30));
+        chkAdmDescontinuado.setMinimumSize(new java.awt.Dimension(35, 30));
+        chkAdmDescontinuado.setPreferredSize(new java.awt.Dimension(35, 30));
+
         javax.swing.GroupLayout panelAdministrarLayout = new javax.swing.GroupLayout(panelAdministrar);
         panelAdministrar.setLayout(panelAdministrarLayout);
         panelAdministrarLayout.setHorizontalGroup(
@@ -209,29 +247,33 @@ public class FrmProducto extends javax.swing.JFrame {
                             .addComponent(etiAdmCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(etiAdmTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(etiAdmMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(etiAdmCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40)
-                        .addGroup(panelAdministrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtAdmCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtAdmMarca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtAdmIdProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cmbAdmCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cmbAdmTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
+                            .addComponent(etiAdmCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(etiAdmDescontinuado, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
                         .addGroup(panelAdministrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(chkAdmIdProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(chkAdmCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(chkAdmMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(chkAdmCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelAdministrarLayout.createSequentialGroup()
-                                .addComponent(chkAdmTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(100, 100, 100)
-                                .addComponent(btnAdmBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(panelAdministrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtAdmCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtAdmMarca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtAdmIdProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cmbAdmCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cmbAdmTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(panelAdministrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(chkAdmIdProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(chkAdmCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(chkAdmMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(chkAdmCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panelAdministrarLayout.createSequentialGroup()
+                                        .addComponent(chkAdmTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(100, 100, 100)
+                                        .addComponent(btnAdmBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(50, 50, 50)
+                                        .addComponent(tglbtnAdmEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(50, 50, 50)
-                                .addComponent(tglbtnAdmEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(50, 50, 50)
-                        .addComponent(btnAdmGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 52, Short.MAX_VALUE)))
+                                .addComponent(btnAdmGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(chkAdmDescontinuado, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 42, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelAdministrarLayout.setVerticalGroup(
@@ -265,22 +307,226 @@ public class FrmProducto extends javax.swing.JFrame {
                     .addComponent(txtAdmMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etiAdmMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(chkAdmMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61)
+                .addGap(18, 18, 18)
+                .addGroup(panelAdministrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(etiAdmDescontinuado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chkAdmDescontinuado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(scrollPaneAdm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         tabbedPaneProducto.addTab("Administrar", panelAdministrar);
 
+        scrollPaneComprar.setMinimumSize(new java.awt.Dimension(100, 100));
+        scrollPaneComprar.setPreferredSize(new java.awt.Dimension(800, 300));
+
+        modeloTablaComprarProducto.setColumnIdentifiers(new String[] {
+            // Jalar de la BD todas las cabeceras de la tabla Producto
+            "ID Producto", "ID Categoria", "ID_Tipo", "Codigo", "Marca", "Descripcion", "Caracteristicas", "Precio_Unitario", "Stock", "Descontinuado"
+        });
+        tablaComprarProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tablaComprarProducto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tablaComprarProducto.setModel(modeloTablaComprarProducto);
+        tablaComprarProducto.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tablaComprarProducto.setAutoscrolls(false);
+        tablaComprarProducto.setCellSelectionEnabled(true);
+        tablaComprarProducto.setFillsViewportHeight(true);
+        tablaComprarProducto.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        tablaComprarProducto.setMinimumSize(new java.awt.Dimension(90, 90));
+        tablaComprarProducto.setRowHeight(30);
+        tablaComprarProducto.setShowVerticalLines(true);
+        tablaComprarProducto.setSurrendersFocusOnKeystroke(true);
+        tablaComprarProducto.getTableHeader().setReorderingAllowed(false);
+        scrollPaneComprar.setViewportView(tablaComprarProducto);
+
+        etiComprarCategoria.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        etiComprarCategoria.setText("Categoria:");
+        etiComprarCategoria.setMaximumSize(new java.awt.Dimension(80, 30));
+        etiComprarCategoria.setMinimumSize(new java.awt.Dimension(80, 30));
+        etiComprarCategoria.setName(""); // NOI18N
+        etiComprarCategoria.setPreferredSize(new java.awt.Dimension(80, 30));
+
+        etiComprarTipo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        etiComprarTipo.setText("Tipo:");
+        etiComprarTipo.setPreferredSize(new java.awt.Dimension(39, 30));
+
+        cmbComprarCategoria.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        cmbComprarCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbComprarCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cmbComprarCategoria.setMinimumSize(new java.awt.Dimension(200, 30));
+        cmbComprarCategoria.setPreferredSize(new java.awt.Dimension(200, 30));
+
+        cmbComprarTipo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        cmbComprarTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbComprarTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cmbComprarTipo.setMinimumSize(new java.awt.Dimension(200, 30));
+        cmbComprarTipo.setPreferredSize(new java.awt.Dimension(200, 30));
+
+        btnComprarCategoriaCrear.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnComprarCategoriaCrear.setText("Crear");
+        btnComprarCategoriaCrear.setToolTipText("Crear Categoria de Producto");
+        btnComprarCategoriaCrear.setMaximumSize(new java.awt.Dimension(100, 30));
+        btnComprarCategoriaCrear.setMinimumSize(new java.awt.Dimension(100, 30));
+        btnComprarCategoriaCrear.setPreferredSize(new java.awt.Dimension(100, 30));
+
+        etiComprarProveedor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        etiComprarProveedor.setText("Proveedor:");
+        etiComprarProveedor.setMaximumSize(new java.awt.Dimension(110, 30));
+        etiComprarProveedor.setMinimumSize(new java.awt.Dimension(110, 30));
+        etiComprarProveedor.setPreferredSize(new java.awt.Dimension(110, 30));
+
+        btnComprarTipoCrear.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnComprarTipoCrear.setText("Crear");
+        btnComprarTipoCrear.setToolTipText("Crear Tipo de Producto");
+        btnComprarTipoCrear.setMaximumSize(new java.awt.Dimension(100, 30));
+        btnComprarTipoCrear.setMinimumSize(new java.awt.Dimension(100, 30));
+        btnComprarTipoCrear.setPreferredSize(new java.awt.Dimension(100, 30));
+
+        btnComprarAniadir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnComprarAniadir.setText("Añadir");
+        btnComprarAniadir.setToolTipText("Añade una fila para registrar la compra de un producto.");
+        btnComprarAniadir.setMaximumSize(new java.awt.Dimension(100, 30));
+        btnComprarAniadir.setMinimumSize(new java.awt.Dimension(100, 30));
+        btnComprarAniadir.setPreferredSize(new java.awt.Dimension(100, 30));
+
+        etiListaDeCompras.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        etiListaDeCompras.setText("Lista de compras:");
+        etiListaDeCompras.setMaximumSize(new java.awt.Dimension(330, 30));
+        etiListaDeCompras.setMinimumSize(new java.awt.Dimension(330, 30));
+        etiListaDeCompras.setPreferredSize(new java.awt.Dimension(330, 30));
+
+        etiComprarDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        etiComprarDescripcion.setText("Descripción:");
+        etiComprarDescripcion.setMaximumSize(new java.awt.Dimension(110, 30));
+        etiComprarDescripcion.setMinimumSize(new java.awt.Dimension(110, 30));
+        etiComprarDescripcion.setPreferredSize(new java.awt.Dimension(110, 30));
+
+        scrollPaneComprarDescripcion.setPreferredSize(new java.awt.Dimension(460, 120));
+
+        txtaDescripcion.setColumns(20);
+        txtaDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtaDescripcion.setLineWrap(true);
+        txtaDescripcion.setRows(5);
+        txtaDescripcion.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        scrollPaneComprarDescripcion.setViewportView(txtaDescripcion);
+
+        etiComprarCaracteristicas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        etiComprarCaracteristicas.setText("Características:");
+        etiComprarCaracteristicas.setMaximumSize(new java.awt.Dimension(110, 30));
+        etiComprarCaracteristicas.setMinimumSize(new java.awt.Dimension(110, 30));
+        etiComprarCaracteristicas.setPreferredSize(new java.awt.Dimension(110, 30));
+
+        scrollPaneComprarCaracteristicas.setPreferredSize(new java.awt.Dimension(460, 110));
+
+        txtaComprarCaracteristicas.setColumns(20);
+        txtaComprarCaracteristicas.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtaComprarCaracteristicas.setLineWrap(true);
+        txtaComprarCaracteristicas.setRows(5);
+        txtaComprarCaracteristicas.setMinimumSize(new java.awt.Dimension(460, 110));
+        scrollPaneComprarCaracteristicas.setViewportView(txtaComprarCaracteristicas);
+
+        btnComprarQuitar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnComprarQuitar.setText("Quitar");
+        btnComprarQuitar.setToolTipText("Quita los productos seleccionados.");
+        btnComprarQuitar.setMaximumSize(new java.awt.Dimension(100, 30));
+        btnComprarQuitar.setMinimumSize(new java.awt.Dimension(100, 30));
+        btnComprarQuitar.setPreferredSize(new java.awt.Dimension(100, 30));
+
+        cmbComprarProveedor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        cmbComprarProveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbComprarProveedor.setAutoscrolls(true);
+        cmbComprarProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cmbComprarProveedor.setMinimumSize(new java.awt.Dimension(200, 30));
+        cmbComprarProveedor.setPreferredSize(new java.awt.Dimension(200, 30));
+
+        btnComprarProveedorRegistrar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnComprarProveedorRegistrar.setText("Nuevo");
+        btnComprarProveedorRegistrar.setToolTipText("Registrar a un nuevo proveedor.");
+        btnComprarProveedorRegistrar.setMaximumSize(new java.awt.Dimension(100, 30));
+        btnComprarProveedorRegistrar.setMinimumSize(new java.awt.Dimension(120, 30));
+        btnComprarProveedorRegistrar.setPreferredSize(new java.awt.Dimension(120, 30));
+
         javax.swing.GroupLayout panelComprarLayout = new javax.swing.GroupLayout(panelComprar);
         panelComprar.setLayout(panelComprarLayout);
         panelComprarLayout.setHorizontalGroup(
             panelComprarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGroup(panelComprarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelComprarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrollPaneComprar, javax.swing.GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
+                    .addGroup(panelComprarLayout.createSequentialGroup()
+                        .addGroup(panelComprarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelComprarLayout.createSequentialGroup()
+                                .addGroup(panelComprarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(etiListaDeCompras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(etiComprarDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panelComprarLayout.createSequentialGroup()
+                                        .addGroup(panelComprarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(etiComprarTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(etiComprarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(etiComprarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(30, 30, 30)
+                                        .addGroup(panelComprarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(panelComprarLayout.createSequentialGroup()
+                                                .addGroup(panelComprarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(cmbComprarCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(cmbComprarTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addGap(20, 20, 20)
+                                                .addGroup(panelComprarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                                    .addComponent(btnComprarCategoriaCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(btnComprarTipoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(cmbComprarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(18, 18, 18)
+                                .addGroup(panelComprarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(etiComprarCaracteristicas, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnComprarProveedorRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(panelComprarLayout.createSequentialGroup()
+                                .addComponent(btnComprarAniadir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnComprarQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelComprarLayout.createSequentialGroup()
+                                .addComponent(scrollPaneComprarDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(scrollPaneComprarCaracteristicas, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         panelComprarLayout.setVerticalGroup(
             panelComprarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 679, Short.MAX_VALUE)
+            .addGroup(panelComprarLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(panelComprarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(cmbComprarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etiComprarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnComprarProveedorRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelComprarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(etiComprarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbComprarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnComprarCategoriaCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelComprarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(etiComprarTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbComprarTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnComprarTipoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelComprarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiComprarDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etiComprarCaracteristicas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelComprarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(scrollPaneComprarCaracteristicas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scrollPaneComprarDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
+                .addGap(21, 21, 21)
+                .addComponent(etiListaDeCompras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelComprarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnComprarAniadir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnComprarQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrollPaneComprar, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         tabbedPaneProducto.addTab("Comprar", panelComprar);
@@ -323,27 +569,50 @@ public class FrmProducto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdmBuscar;
     private javax.swing.JButton btnAdmGuardar;
+    private javax.swing.JButton btnComprarAniadir;
+    private javax.swing.JButton btnComprarCategoriaCrear;
+    private javax.swing.JButton btnComprarProveedorRegistrar;
+    private javax.swing.JButton btnComprarQuitar;
+    private javax.swing.JButton btnComprarTipoCrear;
     private javax.swing.JCheckBox chkAdmCategoria;
     private javax.swing.JCheckBox chkAdmCodigo;
+    private javax.swing.JCheckBox chkAdmDescontinuado;
     private javax.swing.JCheckBox chkAdmIdProducto;
     private javax.swing.JCheckBox chkAdmMarca;
     private javax.swing.JCheckBox chkAdmTipo;
     private javax.swing.JComboBox<String> cmbAdmCategoria;
     private javax.swing.JComboBox<String> cmbAdmTipo;
+    private javax.swing.JComboBox<String> cmbComprarCategoria;
+    private javax.swing.JComboBox<String> cmbComprarProveedor;
+    private javax.swing.JComboBox<String> cmbComprarTipo;
     private javax.swing.JLabel etiAdmCategoria;
     private javax.swing.JLabel etiAdmCodigo;
+    private javax.swing.JLabel etiAdmDescontinuado;
     private javax.swing.JLabel etiAdmIdProducto;
     private javax.swing.JLabel etiAdmMarca;
     private javax.swing.JLabel etiAdmTipo;
+    private javax.swing.JLabel etiComprarCaracteristicas;
+    private javax.swing.JLabel etiComprarCategoria;
+    private javax.swing.JLabel etiComprarDescripcion;
+    private javax.swing.JLabel etiComprarProveedor;
+    private javax.swing.JLabel etiComprarTipo;
+    private javax.swing.JLabel etiListaDeCompras;
     private javax.swing.JPanel panelAdministrar;
     private javax.swing.JPanel panelComprar;
     private javax.swing.JScrollPane scrollPaneAdm;
+    private javax.swing.JScrollPane scrollPaneComprar;
+    private javax.swing.JScrollPane scrollPaneComprarCaracteristicas;
+    private javax.swing.JScrollPane scrollPaneComprarDescripcion;
     private javax.swing.JTabbedPane tabbedPaneProducto;
     private javax.swing.JTable tablaAdmProducto;
     private javax.swing.table.DefaultTableModel modeloTablaAdmProducto; // TableModel
+    private javax.swing.JTable tablaComprarProducto;
+    private javax.swing.table.DefaultTableModel modeloTablaComprarProducto; // TableModel
     private javax.swing.JToggleButton tglbtnAdmEditar;
     private javax.swing.JTextField txtAdmCodigo;
     private javax.swing.JTextField txtAdmIdProducto;
     private javax.swing.JTextField txtAdmMarca;
+    private javax.swing.JTextArea txtaComprarCaracteristicas;
+    private javax.swing.JTextArea txtaDescripcion;
     // End of variables declaration//GEN-END:variables
 }

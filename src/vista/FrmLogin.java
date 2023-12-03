@@ -1,14 +1,20 @@
 package vista;
 
+import controlador.Navegador;
+
 /**
  *
  * @author Magh
  */
 public class FrmLogin extends javax.swing.JFrame {
+    private final Navegador nav;
     /**
-     * Crea nuevo formulario FrmLogin
+     * Crea nuevo formulario FrmLogin.
+     * 
+     * @param nav Es la instancia de la clase superior.
      */
-    public FrmLogin() {
+    public FrmLogin(Navegador nav) {
+        this.nav = nav;
         initComponents();
     }
 
@@ -34,7 +40,6 @@ public class FrmLogin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
         setName("frmLogin"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(340, 450));
         setResizable(false);
 
         panFondo.setBackground(new java.awt.Color(0, 204, 204));
@@ -56,6 +61,11 @@ public class FrmLogin extends javax.swing.JFrame {
 
         btnIngresar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnIngresar.setText("Ingresar");
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
 
         btnBorrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnBorrar.setText("Borrar");
@@ -134,6 +144,12 @@ public class FrmLogin extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        // Validar con la BD si existen las credenciales.
+        setVisible(false);
+        nav.mostrarFrmPrincipal();
+    }//GEN-LAST:event_btnIngresarActionPerformed
 
     //
 
