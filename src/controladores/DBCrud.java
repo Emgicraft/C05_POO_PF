@@ -1,4 +1,4 @@
-package controlador;
+package controladores;
 
 import java.sql.Connection;
 
@@ -9,7 +9,7 @@ import java.sql.Connection;
 public abstract class DBCrud {
     private Connection con;
     
-    public abstract void consultar();
+    public abstract void crear();
     public abstract void leer();
     public abstract void actualizar();
     public abstract void eliminar();

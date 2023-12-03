@@ -1,4 +1,4 @@
-package controlador;
+package controladores;
 
 /**
  *
@@ -9,7 +9,7 @@ public class Producto extends DBCrud {
     public Producto() {}
 
     @Override
-    public void consultar() {
+    public void crear() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

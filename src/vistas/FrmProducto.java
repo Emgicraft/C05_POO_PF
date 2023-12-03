@@ -1,6 +1,6 @@
-package vista;
+package vistas;
 
-import controlador.Navegador;
+import controladores.Navegador;
 
 /**
  *

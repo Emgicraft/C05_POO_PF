@@ -1,17 +1,12 @@
 package principal;
 
-import controlador.Navegador;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import modelo.SQLDB;
-import vista.FrmLogin;
-import vista.FrmPrincipal;
-import vista.FrmProducto;
+import controladores.Navegador;
+import vistas.FrmLogin;
+import vistas.FrmPrincipal;
+import vistas.FrmProducto;
 
 /**
- *
+ * 
  * @author Magh
  */
 public class Principal implements Navegador {
