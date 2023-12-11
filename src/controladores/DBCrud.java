@@ -1,13 +1,13 @@
 package controladores;
 
-import java.sql.Connection;
+//import java.sql.Connection;
 
 /**
  *
  * @author Magh
  */
 public abstract class DBCrud {
-    private Connection con;
+    //private Connection con;
     
     public abstract void crear();
     public abstract void leer();

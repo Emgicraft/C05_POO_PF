@@ -1,7 +1,6 @@
 package vistas;
 
 import controladores.Navegador;
-import controladores.Producto;
 
 /**
  *

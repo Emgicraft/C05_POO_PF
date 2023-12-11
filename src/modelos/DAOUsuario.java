@@ -4,6 +4,6 @@ package modelos;
  *
  * @author Magh
  */
-public class DAOPersona {
+public class DAOUsuario {
     
 }

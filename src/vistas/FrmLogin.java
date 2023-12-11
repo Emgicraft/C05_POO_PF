@@ -33,7 +33,7 @@ public class FrmLogin extends javax.swing.JFrame {
         etiUsuario = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
         etiContrasenia = new javax.swing.JLabel();
-        txtContrasenia = new javax.swing.JTextField();
+        fieldPassword = new javax.swing.JPasswordField();
         btnIngresar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
 
@@ -57,7 +57,8 @@ public class FrmLogin extends javax.swing.JFrame {
         etiContrasenia.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         etiContrasenia.setText("Contraseña");
 
-        txtContrasenia.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        fieldPassword.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        fieldPassword.setPreferredSize(new java.awt.Dimension(89, 28));
 
         btnIngresar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnIngresar.setText("Ingresar");
@@ -78,32 +79,35 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panLoginLayout.createSequentialGroup()
-                        .addComponent(etiUsuario)
-                        .addGap(71, 71, 71)
-                        .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panLoginLayout.createSequentialGroup()
-                        .addComponent(etiContrasenia)
-                        .addGap(46, 46, 46)
-                        .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panLoginLayout.createSequentialGroup()
                         .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
                         .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addGap(24, 24, 24))
+                    .addGroup(panLoginLayout.createSequentialGroup()
+                        .addGroup(panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panLoginLayout.createSequentialGroup()
+                                .addComponent(etiUsuario)
+                                .addGap(71, 71, 71))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panLoginLayout.createSequentialGroup()
+                                .addComponent(etiContrasenia)
+                                .addGap(46, 46, 46)))
+                        .addGroup(panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                            .addComponent(fieldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(27, 27, 27))
         );
         panLoginLayout.setVerticalGroup(
             panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panLoginLayout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
+                .addGap(73, 73, 73)
                 .addGroup(panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(etiUsuario)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                .addGap(42, 42, 42)
                 .addGroup(panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etiContrasenia))
-                .addGap(66, 66, 66)
+                .addGap(68, 68, 68)
                 .addGroup(panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(btnBorrar)
                     .addComponent(btnIngresar))
@@ -116,7 +120,7 @@ public class FrmLogin extends javax.swing.JFrame {
             panFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panFondoLayout.createSequentialGroup()
                 .addGap(80, 80, 80)
-                .addComponent(etiNombreEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(etiNombreEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                 .addGap(80, 80, 80))
             .addComponent(panLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -127,7 +131,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addComponent(etiNombreEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(panLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addGap(63, 63, 63))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -146,9 +150,11 @@ public class FrmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        // Validar con la BD si existen las credenciales.
+        // Validar datos con la BD si existen las credenciales.
+        // En caso si existan, hacer:
         setVisible(false);
         nav.mostrarFrmPrincipal();
+        // De lo contrario, emergerá ventana de advertencia.
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     //
@@ -159,9 +165,9 @@ public class FrmLogin extends javax.swing.JFrame {
     private javax.swing.JLabel etiContrasenia;
     private javax.swing.JLabel etiNombreEmpresa;
     private javax.swing.JLabel etiUsuario;
+    private javax.swing.JPasswordField fieldPassword;
     private javax.swing.JPanel panFondo;
     private javax.swing.JPanel panLogin;
-    private javax.swing.JTextField txtContrasenia;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
