@@ -1,48 +1,109 @@
 package principal;
 
+import controladores.Navegador;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modelo.SQLDB;
-import vista.FrmLogin;
-import vista.FrmPrincipal;
-import vista.FrmProducto;
+import javax.swing.SwingUtilities;
+import modelos.SQLDB;
+import vistas.FrmLogin;
+import vistas.FrmPrincipal;
+import vistas.FrmProducto;
 
 /**
- *
+ * 
  * @author Magh
  */
-public class Principal {
+public class Principal implements Navegador {
+    private javax.swing.JFrame frmActual;
+    
     /**
-     * @param args the command line arguments
+     * @param args Argumentos de la línea de comandos.
      */
     public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                Principal principal = new Principal();
+                principal.iniciarSistema();
+            }
+        });
+    }
+    
+    public void iniciarSistema() {
+        // Muestra el formulario de login:
+        mostrarFrmLogin();
+        
+        // Intenta establecer la conexión a la base de datos:
+        boolean conexionExitosa;
         SQLDB sql = new SQLDB();
-        Connection con = sql.conectar();
-        try {
+        try (Connection con = sql.conectar();) {
             con.close();
+            conexionExitosa = true; // La conexión fue exitosa aunque no necesariamente su cierre.
         } catch (SQLException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("principal.Principal: Hubo un error al intentar cerrar la conexión.");
+            Logger.getLogger(Principal.class.getName())
+                  .log(Level.SEVERE, null, ex);
+            conexionExitosa = false; // La conexión falló.
         }
-        
-        // ***** FORMULARIOS *****
-        // Instanciar
-        //FrmLogin venLogin = new FrmLogin();
-        
-        // Mostrar
-        //venLogin.setVisible(true);
-        
-        // Instanciar
-        FrmPrincipal venMain = new FrmPrincipal();
-        
-        // Mostrar
-        venMain.setVisible(false);
-        
-        // Instanciar
-        FrmProducto venProd = new FrmProducto();
-        
-        // Mostrar
-        venProd.setVisible(true);
+
+        // Muestra el mensaje de error si la conexión no fue exitosa:
+        if (!conexionExitosa) {
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    javax.swing.JOptionPane.showMessageDialog(frmActual, 
+                    "No se pudo conectar a la base de datos:\n" + sql.getDatabaseName(), 
+                    "Error de conexión a la base de datos", 
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+                }
+            });
+        }
+    }
+    
+    /**
+     * Muestra al FrmLogin y lo guarda como formulario actual.
+     */
+    @Override
+    public void mostrarFrmLogin() {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                FrmLogin frmLogin = new FrmLogin(Principal.this);
+                frmActual = frmLogin;
+                frmLogin.setVisible(true);
+            }
+        });
+    }
+    
+    /**
+     * Muestra al FrmPrincipal y lo guarda como formulario actual.
+     */
+    @Override
+    public void mostrarFrmPrincipal() {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                FrmPrincipal frmPrincipal = new FrmPrincipal(Principal.this);
+                frmActual = frmPrincipal;
+                frmPrincipal.setVisible(true);
+            }
+        });
+    }
+    
+    /**
+     * Muestra al FrmProducto y lo guarda como formulario actual.
+     */
+    @Override
+    public void mostrarFrmProducto() {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                FrmProducto frmProducto = new FrmProducto(Principal.this);
+                frmActual = frmProducto;
+                frmProducto.setVisible(true);
+            }
+        });
     }
 }

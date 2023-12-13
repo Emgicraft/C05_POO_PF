@@ -1,14 +1,23 @@
-package vista;
+package vistas;
+
+import controladores.Navegador;
+import javax.swing.SwingUtilities;
+import modelos.DAOUsuario;
+import modelos.DTOUsuario;
 
 /**
  *
  * @author Magh
  */
 public class FrmLogin extends javax.swing.JFrame {
+    private final Navegador nav;
     /**
-     * Crea nuevo formulario FrmLogin
+     * Crea nuevo formulario FrmLogin.
+     * 
+     * @param nav Es la instancia de la clase superior.
      */
-    public FrmLogin() {
+    public FrmLogin(Navegador nav) {
+        this.nav = nav;
         initComponents();
     }
 
@@ -27,14 +36,13 @@ public class FrmLogin extends javax.swing.JFrame {
         etiUsuario = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
         etiContrasenia = new javax.swing.JLabel();
-        txtContrasenia = new javax.swing.JTextField();
+        fieldPassword = new javax.swing.JPasswordField();
         btnIngresar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
         setName("frmLogin"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(340, 450));
         setResizable(false);
 
         panFondo.setBackground(new java.awt.Color(0, 204, 204));
@@ -52,13 +60,24 @@ public class FrmLogin extends javax.swing.JFrame {
         etiContrasenia.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         etiContrasenia.setText("Contraseña");
 
-        txtContrasenia.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        fieldPassword.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        fieldPassword.setPreferredSize(new java.awt.Dimension(89, 28));
 
         btnIngresar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnIngresar.setText("Ingresar");
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
 
         btnBorrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panLoginLayout = new javax.swing.GroupLayout(panLogin);
         panLogin.setLayout(panLoginLayout);
@@ -68,32 +87,35 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panLoginLayout.createSequentialGroup()
-                        .addComponent(etiUsuario)
-                        .addGap(71, 71, 71)
-                        .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panLoginLayout.createSequentialGroup()
-                        .addComponent(etiContrasenia)
-                        .addGap(46, 46, 46)
-                        .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panLoginLayout.createSequentialGroup()
                         .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
                         .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addGap(24, 24, 24))
+                    .addGroup(panLoginLayout.createSequentialGroup()
+                        .addGroup(panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panLoginLayout.createSequentialGroup()
+                                .addComponent(etiUsuario)
+                                .addGap(71, 71, 71))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panLoginLayout.createSequentialGroup()
+                                .addComponent(etiContrasenia)
+                                .addGap(46, 46, 46)))
+                        .addGroup(panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                            .addComponent(fieldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(27, 27, 27))
         );
         panLoginLayout.setVerticalGroup(
             panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panLoginLayout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
+                .addGap(73, 73, 73)
                 .addGroup(panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(etiUsuario)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                .addGap(42, 42, 42)
                 .addGroup(panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etiContrasenia))
-                .addGap(66, 66, 66)
+                .addGap(68, 68, 68)
                 .addGroup(panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(btnBorrar)
                     .addComponent(btnIngresar))
@@ -106,7 +128,7 @@ public class FrmLogin extends javax.swing.JFrame {
             panFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panFondoLayout.createSequentialGroup()
                 .addGap(80, 80, 80)
-                .addComponent(etiNombreEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(etiNombreEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                 .addGap(80, 80, 80))
             .addComponent(panLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -117,7 +139,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addComponent(etiNombreEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(panLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addGap(63, 63, 63))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -135,6 +157,33 @@ public class FrmLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        // Validar datos con la BD si existen las credenciales.
+        DAOUsuario daoUsuario = new DAOUsuario(new DTOUsuario(txtUsuario.getText(),
+                                                            new String(fieldPassword.getPassword())));
+        int nivelAcceso = daoUsuario.validarAcceso();
+        if (nivelAcceso >= 1) {
+            daoUsuario.leer();
+            setVisible(false);
+            nav.mostrarFrmPrincipal();
+        } else {
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    javax.swing.JOptionPane.showMessageDialog(null, 
+                    "Error al intentar iniciar sesión, revise sus credenciales.", 
+                    "Error de inicio de sesión", 
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+                }
+            });
+        }
+    }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        txtUsuario.setText("");
+        fieldPassword.setText("");
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
     //
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -143,9 +192,9 @@ public class FrmLogin extends javax.swing.JFrame {
     private javax.swing.JLabel etiContrasenia;
     private javax.swing.JLabel etiNombreEmpresa;
     private javax.swing.JLabel etiUsuario;
+    private javax.swing.JPasswordField fieldPassword;
     private javax.swing.JPanel panFondo;
     private javax.swing.JPanel panLogin;
-    private javax.swing.JTextField txtContrasenia;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,4 +1,4 @@
-package modelo;
+package modelos;
 
 /**
  *
@@ -12,6 +12,18 @@ public class DTOUsuario {
     private String estado;
 
     public DTOUsuario() {}
+
+    public DTOUsuario(String nombreUsuario, String contrasenia) {
+        this.nombreUsuario = nombreUsuario;
+        this.contrasenia = contrasenia;
+    }
+
+    public DTOUsuario(int id, String nombreUsuario, int idRol, String estado) {
+        this.id = id;
+        this.nombreUsuario = nombreUsuario;
+        this.idRol = idRol;
+        this.estado = estado;
+    }
 
     public DTOUsuario(int id, String nombreUsuario, String contrasenia, int idRol, String estado) {
         this.id = id;

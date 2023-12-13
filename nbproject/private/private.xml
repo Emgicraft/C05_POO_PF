@@ -4,9 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Moisés/Documents/GitHub/C05_POO_PF/src/principal/Principal.java</file>
-            <file>file:/C:/Users/Moisés/Documents/GitHub/C05_POO_PF/src/modelo/SQLDB.java</file>
-            <file>file:/C:/Users/Moisés/Documents/GitHub/C05_POO_PF/src/vista/FrmProducto.java</file>
-            <file>file:/C:/Users/Moisés/Documents/GitHub/C05_POO_PF/src/vista/FrmPrincipal.java</file>
+            <file>file:/C:/Users/Moisés/Documents/GitHub/C05_POO_PF/src/vistas/FrmPrincipal.java</file>
+            <file>file:/C:/Users/Moisés/Documents/GitHub/C05_POO_PF/src/modelos/DTOUsuario.java</file>
+            <file>file:/C:/Users/Moisés/Documents/GitHub/C05_POO_PF/src/controladores/Navegador.java</file>
+            <file>file:/C:/Users/Moisés/Documents/GitHub/C05_POO_PF/src/modelos/SQLDB.java</file>
+            <file>file:/C:/Users/Moisés/Documents/GitHub/C05_POO_PF/src/vistas/FrmLogin.java</file>
+            <file>file:/C:/Users/Moisés/Documents/GitHub/C05_POO_PF/src/vistas/FrmProducto.java</file>
+            <file>file:/C:/Users/Moisés/Documents/GitHub/C05_POO_PF/src/modelos/DAOUsuario.java</file>
         </group>
     </open-files>
 </project-private>
