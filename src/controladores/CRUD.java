@@ -6,9 +6,7 @@ package controladores;
  *
  * @author Magh
  */
-public abstract class DBCrud {
-    //private Connection con;
-    
+public abstract class CRUD {
     public abstract void crear();
     public abstract void leer();
     public abstract void actualizar();

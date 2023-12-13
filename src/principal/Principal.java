@@ -38,18 +38,13 @@ public class Principal implements Navegador {
         // Intenta establecer la conexión a la base de datos:
         boolean conexionExitosa;
         SQLDB sql = new SQLDB();
-        Connection con = sql.conectar();
-        if (con != null) {
-            try {
-                con.close();
-                System.out.println("SQL Server: Conexión cerrada exitosamente.");
-            } catch (SQLException ex) {
-                System.err.println("SQL Server: Hubo un error al intentar cerrar la conexión.");
-                Logger.getLogger(Principal.class.getName())
-                      .log(Level.SEVERE, null, ex);
-            }
+        try (Connection con = sql.conectar();) {
+            con.close();
             conexionExitosa = true; // La conexión fue exitosa aunque no necesariamente su cierre.
-        } else {
+        } catch (SQLException ex) {
+            System.err.println("principal.Principal: Hubo un error al intentar cerrar la conexión.");
+            Logger.getLogger(Principal.class.getName())
+                  .log(Level.SEVERE, null, ex);
             conexionExitosa = false; // La conexión falló.
         }
 

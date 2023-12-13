@@ -1,6 +1,9 @@
 package vistas;
 
 import controladores.Navegador;
+import javax.swing.SwingUtilities;
+import modelos.DAOUsuario;
+import modelos.DTOUsuario;
 
 /**
  *
@@ -70,6 +73,11 @@ public class FrmLogin extends javax.swing.JFrame {
 
         btnBorrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panLoginLayout = new javax.swing.GroupLayout(panLogin);
         panLogin.setLayout(panLoginLayout);
@@ -151,11 +159,30 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // Validar datos con la BD si existen las credenciales.
-        // En caso si existan, hacer:
-        setVisible(false);
-        nav.mostrarFrmPrincipal();
-        // De lo contrario, emergerá ventana de advertencia.
+        DAOUsuario daoUsuario = new DAOUsuario(new DTOUsuario(txtUsuario.getText(),
+                                                            new String(fieldPassword.getPassword())));
+        int nivelAcceso = daoUsuario.validarAcceso();
+        if (nivelAcceso >= 1) {
+            daoUsuario.leer();
+            setVisible(false);
+            nav.mostrarFrmPrincipal();
+        } else {
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    javax.swing.JOptionPane.showMessageDialog(null, 
+                    "Error al intentar iniciar sesión, revise sus credenciales.", 
+                    "Error de inicio de sesión", 
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+                }
+            });
+        }
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        txtUsuario.setText("");
+        fieldPassword.setText("");
+    }//GEN-LAST:event_btnBorrarActionPerformed
 
     //
 
