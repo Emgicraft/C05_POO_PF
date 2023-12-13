@@ -77,20 +77,25 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(panProductoLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(etiProducto)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addGap(13, 13, 13))
         );
         panProductoLayout.setVerticalGroup(
             panProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panProductoLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(etiProducto)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addGap(63, 63, 63))
         );
 
         panCliente.setToolTipText("Gestionar Clientes");
         panCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panCliente.setMinimumSize(new java.awt.Dimension(100, 100));
         panCliente.setPreferredSize(new java.awt.Dimension(100, 100));
+        panCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panClienteMouseClicked(evt);
+            }
+        });
 
         etiCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         etiCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -103,14 +108,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(panClienteLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(etiCliente)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
         panClienteLayout.setVerticalGroup(
             panClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panClienteLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(etiCliente)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addGap(63, 63, 63))
         );
 
         panOrden.setToolTipText("Gestionar Ordenes");
@@ -129,20 +134,25 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(panOrdenLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(etiOrden)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
         panOrdenLayout.setVerticalGroup(
             panOrdenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panOrdenLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(etiOrden)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addGap(63, 63, 63))
         );
 
         panEmpleado.setToolTipText("Gestionar Empleados");
         panEmpleado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panEmpleado.setMinimumSize(new java.awt.Dimension(100, 100));
         panEmpleado.setPreferredSize(new java.awt.Dimension(100, 100));
+        panEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panEmpleadoMouseClicked(evt);
+            }
+        });
 
         etiEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         etiEmpleado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -153,7 +163,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         panEmpleadoLayout.setHorizontalGroup(
             panEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panEmpleadoLayout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
                 .addComponent(etiEmpleado)
                 .addGap(10, 10, 10))
         );
@@ -162,13 +172,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(panEmpleadoLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(etiEmpleado)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addGap(63, 63, 63))
         );
 
         panUsuario.setToolTipText("Gestionar Usuarios");
         panUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panUsuario.setMinimumSize(new java.awt.Dimension(100, 100));
         panUsuario.setPreferredSize(new java.awt.Dimension(100, 100));
+        panUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panUsuarioMouseClicked(evt);
+            }
+        });
 
         etiUsuarios.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         etiUsuarios.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -179,7 +194,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         panUsuarioLayout.setHorizontalGroup(
             panUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panUsuarioLayout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
                 .addComponent(etiUsuarios)
                 .addGap(20, 20, 20))
         );
@@ -188,7 +203,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(panUsuarioLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(etiUsuarios)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addGap(63, 63, 63))
         );
 
         btnCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -282,6 +297,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
         setVisible(false);
         nav.mostrarFrmLogin();
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
+
+    private void panUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panUsuarioMouseClicked
+        nav.mostrarFrmUsuario();
+    }//GEN-LAST:event_panUsuarioMouseClicked
+
+    private void panClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panClienteMouseClicked
+        nav.mostrarFrmCliente();
+    }//GEN-LAST:event_panClienteMouseClicked
+
+    private void panEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panEmpleadoMouseClicked
+        nav.mostrarFrmEmpleado();
+    }//GEN-LAST:event_panEmpleadoMouseClicked
 
     //
 
