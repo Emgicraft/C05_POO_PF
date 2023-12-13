@@ -7,9 +7,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 import modelos.SQLDB;
+import vistas.FrmCliente;
+import vistas.FrmEmpleado;
 import vistas.FrmLogin;
 import vistas.FrmPrincipal;
 import vistas.FrmProducto;
+import vistas.FrmUsuario;
 
 /**
  * 
@@ -103,6 +106,51 @@ public class Principal implements Navegador {
                 FrmProducto frmProducto = new FrmProducto(Principal.this);
                 frmActual = frmProducto;
                 frmProducto.setVisible(true);
+            }
+        });
+    }
+    
+    /**
+     * Muestra al FrmProducto y lo guarda como formulario actual.
+     */
+    @Override
+    public void mostrarFrmCliente() {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                FrmCliente frmCliente = new FrmCliente(Principal.this);
+                frmActual = frmCliente;
+                frmCliente.setVisible(true);
+            }
+        });
+    }
+    
+    /**
+     * Muestra al FrmProducto y lo guarda como formulario actual.
+     */
+    @Override
+    public void mostrarFrmUsuario() {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                FrmUsuario frmUsuario = new FrmUsuario(Principal.this);
+                frmActual = frmUsuario;
+                frmUsuario.setVisible(true);
+            }
+        });
+    }
+    
+    /**
+     * Muestra al FrmProducto y lo guarda como formulario actual.
+     */
+    @Override
+    public void mostrarFrmEmpleado() {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                FrmEmpleado frmEmpleado = new FrmEmpleado(Principal.this);
+                frmActual = frmEmpleado;
+                frmEmpleado.setVisible(true);
             }
         });
     }

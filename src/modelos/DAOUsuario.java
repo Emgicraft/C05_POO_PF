@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,8 +34,6 @@ public class DAOUsuario {
             st.registerOutParameter(3, Types.INTEGER);
             st.execute();
             nivelAcceso = st.getInt(3);
-            System.out.print("Nivel de acceso: ");
-            System.out.println(nivelAcceso);
         } catch (SQLException ex) {
             System.err.println("modelos.DAOUsuario: Error al validar el acceso.\n\t" + ex);
             Logger.getLogger(SQLDB.class.getName()).log(Level.SEVERE, null, ex);
@@ -56,8 +53,6 @@ public class DAOUsuario {
             st.registerOutParameter(3, Types.INTEGER);
             st.execute();
             nivelAcceso = st.getInt(3);
-            System.out.print("Nivel de acceso: ");
-            System.out.println(nivelAcceso);
         } catch (SQLException ex) {
             System.err.println("modelos.DAOUsuario: Error al validar el acceso.\n\t" + ex);
             Logger.getLogger(SQLDB.class.getName()).log(Level.SEVERE, null, ex);
@@ -68,13 +63,13 @@ public class DAOUsuario {
     
     public void leer() {
         SQLDB sql = new SQLDB();
-        String consultaSql = "SELECT ID_Empleado, NombreUsuario, [ID Rol], Estado FROM "+nombreTabla+" WHERE TABLE_SCHEMA = 'dbo'";
+        String consultaSql = "SELECT ID_Empleado, NombreUsuario, [ID Rol], Estado FROM " + nombreTabla;
         try (Connection cn = sql.conectar(); PreparedStatement st = cn.prepareStatement(consultaSql)) {
             try (ResultSet res = st.executeQuery()) {
                 if (res.next()) {
                     dtoUsuario = new DTOUsuario(res.getInt("ID_Empleado"),
                                                 res.getString("NombreUsuario"),
-                                                res.getInt("[ID Rol]"),
+                                                res.getInt("ID Rol"),
                                                 res.getString("Estado"));
                 }
             }

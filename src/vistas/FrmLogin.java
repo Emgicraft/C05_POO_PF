@@ -44,6 +44,11 @@ public class FrmLogin extends javax.swing.JFrame {
         setTitle("Login");
         setName("frmLogin"); // NOI18N
         setResizable(false);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         panFondo.setBackground(new java.awt.Color(0, 204, 204));
 
@@ -158,9 +163,8 @@ public class FrmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        // Validar datos con la BD si existen las credenciales.
         DAOUsuario daoUsuario = new DAOUsuario(new DTOUsuario(txtUsuario.getText(),
-                                                            new String(fieldPassword.getPassword())));
+                                                                new String(fieldPassword.getPassword())));
         int nivelAcceso = daoUsuario.validarAcceso();
         if (nivelAcceso >= 1) {
             daoUsuario.leer();
@@ -183,6 +187,13 @@ public class FrmLogin extends javax.swing.JFrame {
         txtUsuario.setText("");
         fieldPassword.setText("");
     }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+//        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+//            // Llamar al método que maneja el evento del botón
+//            btnIngresar.doClick();
+//        }
+    }//GEN-LAST:event_formKeyPressed
 
     //
 
